@@ -1,0 +1,51 @@
+### 解题思路
+
+- - -
+### 题解代码
+```java
+public class Solution {
+    /**
+     * @param nums: A set of numbers
+     * @return: A list of lists
+     */
+    public List<List<Integer>> subsets(int[] nums) {
+        // write your code here
+        List<List<Integer>> result = new ArrayList<>();
+
+        if(nums == null){
+            return result;
+        }
+
+        result.add(new ArrayList<>());
+        if(nums.length == 0){
+            return result;
+        }
+
+        Arrays.sort(nums);
+
+        // for(int i = 0; i < nums.length; i++){
+        //     List<List<Integer>> subsetResult = new ArrayList<List<Integer>>();
+
+        //     for(List<Integer> subset : result){
+        //         List<Integer> newSubset = new ArrayList<Integer>(subset);
+        //         newSubset.add(nums[i]);
+        //         subsetResult.add(newSubset);
+        //     }
+
+        //     result.addAll(subsetResult);
+        // }
+
+        for(int i = 0; i < nums.length; i++){
+            int resultSize = result.size();
+            for(int j = 0; j < resultSize; j++){
+                List<Integer> temp = new ArrayList<>(result.get(j));
+                temp.add(nums[i]);
+                result.add(temp);
+            }
+        }
+
+        return result;
+
+    }
+}
+```
