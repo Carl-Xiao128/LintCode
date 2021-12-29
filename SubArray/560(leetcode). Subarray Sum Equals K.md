@@ -6,7 +6,7 @@
 public class Solution {
     public int subarraySum(int[] nums, int k) {
 
-        if(nums == null){
+        if(nums == null || nums.length == 0){
             return 0;
         }
 
