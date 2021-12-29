@@ -66,3 +66,39 @@ public class Solution {
     }
 }
 ```
+### 解题思路 Solution-3 Subarray Sum Equals K
+#### 使用PrefixSum + hashMap解决
+- - -
+### 题解代码
+```java
+public class Solution {
+    public int subarraySum(int[] nums, int k) {
+        int count = 0;
+
+        if(nums == null || nums.length == 0){
+            return count;
+        }
+
+        int n = nums.length;
+        int[] prefixSum = new int[n + 1];
+        for(int i = 1; i <= n; i++){
+            prefixSum[i] = prefixSum[i -1] + nums[i - 1];
+        }
+
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        for(int i = 1; i <= n; i++){
+            if(prefixSum[i] == k){
+                count++;
+            }
+
+            if(map.containsKey(prefixSum[i] - k)){
+                count += map.get(prefixSum[i] - k);
+            }
+
+            map.put(prefixSum[i], map.getOrDefault(prefixSum[i], 0) + 1);
+        }
+        return count;
+    }
+}
+```
